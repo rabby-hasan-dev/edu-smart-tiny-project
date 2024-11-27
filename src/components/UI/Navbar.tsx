@@ -76,6 +76,10 @@ const Navbar = () => {
 
                                 <Link href="/#" className="text-[#092A67] text-[20px] font-bold hover:text-[#007bff] "> About</Link>
                             </li>
+                            <li>
+
+                                <Link href="/dashboard" className="text-[#092A67] text-[20px] font-bold hover:text-[#007bff] ">Dashboard</Link>
+                            </li>
 
                         </ul>
 

@@ -47,7 +47,7 @@ const LoginPage = () => {
                                 <ESInput label='Username/Email' type='text' name='email' placeholder='Jhon doe' />
                                 <ESInput label='Enter Password' type='password' name='password' placeholder='1234***' />
                                 <CheckboxInput name='agree' label='I agree to the terms and conditions' />
-                                <button className='btn-primary py-[17px] px-6 '>Continue to Register</button>
+                                <button className='btn-primary py-[17px] px-6 '>Continue to Login</button>
                             </div>
                         </ESForm>
                         <p className="text-center text-lg mt-[66px]  ">
