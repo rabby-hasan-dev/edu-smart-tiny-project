@@ -11,6 +11,7 @@ import ESInput from '@/components/form/ESInput';
 import ESSelect from '@/components/form/ESSelect';
 import SelectInput from '@/components/form/ESSelect';
 import CheckboxInput from '@/components/form/ESCheckbox';
+import TextAreaInput from '@/components/form/ESTexarea';
 
 
 const RegisterPage = () => {
