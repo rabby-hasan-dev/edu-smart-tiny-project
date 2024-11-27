@@ -1,17 +1,15 @@
 'use client'
 import Image from 'next/image';
 import React from 'react';
-
 import registerBG from '@/assets/Placeholder Image.png'
 import Container from '@/components/UI/Container';
 import Link from 'next/link';
 import ESForm from '@/components/form/ESForm';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import ESInput from '@/components/form/ESInput';
-import ESSelect from '@/components/form/ESSelect';
 import SelectInput from '@/components/form/ESSelect';
 import CheckboxInput from '@/components/form/ESCheckbox';
-import TextAreaInput from '@/components/form/ESTexarea';
+
 
 
 const RegisterPage = () => {
