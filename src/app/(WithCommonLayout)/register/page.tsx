@@ -53,7 +53,7 @@ const RegisterPage = () => {
                                     className="px-4 py-4 text-lg rounded-md text-[#092A67] bg-[#E9F1FA] border border-[#092A67] w-full outline-[#092A67] " />
                             </div>
                             <div>
-                                <label className="mb-2 font-bold text-[20px] block">Username/Email</label>
+                                <label className="mb-2 font-bold text-[20px] block">Enter Password</label>
                                 <input type='password' placeholder='1234***'
                                     className="px-4 py-4 text-lg rounded-md text-[#092A67] bg-[#E9F1FA] border border-[#092A67] w-full outline-[#092A67] " />
                             </div>
