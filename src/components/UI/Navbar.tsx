@@ -82,9 +82,11 @@ const Navbar = () => {
                     </nav>
                     {/* Right Section */}
                     <div className="flex items-center space-x-4">
-                        <button className='btn-primary text-xl px-6 py-[10px] '>
-                            Login
-                        </button>
+                        <Link href='/login' >
+                            <button className='btn-primary text-xl px-6 py-[10px] '>
+                                Login
+                            </button>
+                        </Link>
 
                     </div>
                 </div>

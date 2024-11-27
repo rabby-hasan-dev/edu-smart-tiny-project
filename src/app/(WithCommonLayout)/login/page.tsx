@@ -8,6 +8,8 @@ import Container from '@/components/UI/Container';
 import Link from 'next/link';
 
 const LoginPage = () => {
+
+
     return (
         <section>
             <Container>
@@ -15,7 +17,7 @@ const LoginPage = () => {
                 <h4 className='text-4xl text-[#092A67] text-center font-bold mb-12 '>Login To EduSmart</h4>
                 <div className='border bg-[#E9F1FA] border-[#092A67]  rounded-xl lg:flex items-center'>
                     <figure
-                        className='flex flex-col w-1/2 '
+                        className='flex flex-col lg:w-1/2 '
 
                     >
                         <Image
@@ -28,7 +30,7 @@ const LoginPage = () => {
                             }}
                         />
                     </figure>
-                    <div className='w-1/2  py-12 px-[82px]  '>
+                    <div className='lg:w-1/2  py-12 px-[82px]  '>
 
                         <form className='space-y-6'>
 
