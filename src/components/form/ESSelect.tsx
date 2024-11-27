@@ -11,7 +11,7 @@ interface ISelectInputProps {
     rules?: object;
 }
 
-const ESSelect: React.FC<ISelectInputProps> = ({
+const SelectInput: React.FC<ISelectInputProps> = ({
     name,
     label,
     options,
@@ -62,6 +62,6 @@ const ESSelect: React.FC<ISelectInputProps> = ({
     );
 };
 
-export default ESSelect;
+export default SelectInput;
 
 

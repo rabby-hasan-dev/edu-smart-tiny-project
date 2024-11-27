@@ -9,6 +9,8 @@ import ESForm from '@/components/form/ESForm';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import ESInput from '@/components/form/ESInput';
 import ESSelect from '@/components/form/ESSelect';
+import SelectInput from '@/components/form/ESSelect';
+import CheckboxInput from '@/components/form/ESCheckbox';
 
 
 const RegisterPage = () => {
@@ -44,7 +46,7 @@ const RegisterPage = () => {
                             onSubmit={onSubmit}
                         >
                             <div className='space-y-6'>
-                                <ESSelect
+                                <SelectInput
                                     name="role"
                                     label="Select your Role"
                                     options={[
@@ -56,14 +58,8 @@ const RegisterPage = () => {
                                 />
                                 <ESInput label='Username/Email' type='text' name='email' placeholder='Jhon doe' />
                                 <ESInput label='Enter Password' type='password' name='password' placeholder='1234***' />
+                                <CheckboxInput name='agree' label='I agree to the terms and conditions' />
 
-                                <div className="flex items-center">
-                                    <input
-
-                                        id="checkbox1" type="checkbox"
-                                        className="w-[19px] h-[19px] mr-3 rounded focus:ring-1 focus:ring-offset-slate-200 focus:ring-offset-4 focus:ring-[#007bff]" />
-                                    <label htmlFor="checkbox1" className="text-[#092A67] text-sm">I agree to the terms and conditions</label>
-                                </div>
 
                                 <button className='btn-primary py-[17px] px-6 '>Continue to Register</button>
                             </div>
