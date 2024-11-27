@@ -8,6 +8,7 @@ import Link from 'next/link';
 import ESForm from '@/components/form/ESForm';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import ESInput from '@/components/form/ESInput';
+import ESSelect from '@/components/form/ESSelect';
 
 
 const RegisterPage = () => {
@@ -38,29 +39,21 @@ const RegisterPage = () => {
                         />
                     </figure>
                     <div className='lg:w-1/2  py-12 px-[82px]  '>
-
                         <ESForm
 
                             onSubmit={onSubmit}
                         >
                             <div className='space-y-6'>
-                                <div className="w-full ">
-                                    <label htmlFor="options" className="mb-2 font-bold text-[20px] block">
-                                        Select Role
-                                    </label>
-                                    <select
-
-                                        id="options"
-                                        className="px-4 py-4 text-lg rounded-md text-[#092A67] bg-[#E9F1FA] border border-[#092A67] w-full outline-[#092A67]"
-                                    >
-                                        <option value="" disabled selected>
-                                            Student
-                                        </option>
-                                        <option value="option1"> Student</option>
-                                        <option value="option2">Admin</option>
-                                        <option value="option3">Employe</option>
-                                    </select>
-                                </div>
+                                <ESSelect
+                                    name="role"
+                                    label="Select your Role"
+                                    options={[
+                                        { value: "agent", label: "Agent" },
+                                        { value: "student", label: "Student" },
+                                        { value: "teacher", label: "Teacher" },
+                                    ]}
+                                    rules={{ required: "role is required" }}
+                                />
                                 <ESInput label='Username/Email' type='text' name='email' placeholder='Jhon doe' />
                                 <ESInput label='Enter Password' type='password' name='password' placeholder='1234***' />
 
