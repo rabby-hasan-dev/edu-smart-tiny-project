@@ -12,9 +12,15 @@ import CheckboxInput from '@/components/form/ESCheckbox';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 import { useAppDispatch } from '@/lib/redux/hook';
 import { setUser } from '@/lib/redux/features/auth/AuthSlice';
+import { useGetAllUniversityQuery } from '@/lib/redux/api/baseApi';
 
 const LoginPage = () => {
     const dispatch = useAppDispatch();
+
+    const { data } = useGetAllUniversityQuery(undefined);
+
+    console.log(data)
+
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         console.log(data)
 
