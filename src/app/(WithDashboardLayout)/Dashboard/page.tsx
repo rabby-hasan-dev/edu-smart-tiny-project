@@ -5,6 +5,7 @@ import ESForm from "@/components/form/ESForm";
 import ESInput from "@/components/form/ESInput";
 import SelectInput from "@/components/form/ESSelect";
 import TextAreaInput from "@/components/form/ESTexarea";
+import { useAddUinversityMutation } from "@/lib/redux/features/university/universityApi";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
@@ -13,8 +14,7 @@ import { FieldValues, SubmitHandler } from "react-hook-form";
 export default function DashboardPage() {
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
-
-
+    const [addUniversity] = useAddUinversityMutation();
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]; // Get the first file
@@ -34,13 +34,41 @@ export default function DashboardPage() {
 
     const handleRemoveImage = () => {
         setImagePreview(null)
+
     }
 
 
+    const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+        const formData = new FormData();
+        formData.append('name', data.name); // University Name
+        formData.append('description', data.description); // Description
+        formData.append('address_line_1', data.address_line_1); // Address Line 1
+        formData.append('address_line_2', data.address_line_2); // Address Line 2
+        formData.append('code', data.code); // Official Email
+        formData.append('country', data.country); // Country
+        formData.append('city', data.city); // City
+        formData.append('state', data.state); // State
+        formData.append('zip', data.zip); // Zip Code
+
+        // Append image file if it's present
+        if (imageFile) {
+            formData.append('logo', imageFile);
+        }
+
+        try {
+            // const response = await addUniversity(formData).unwrap();
+            // console.log('Success:', response);
+            // Optionally, reset form state or show success message here
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+        // // Log FormData key-value pairs
+        // for (const [key, value] of formData.entries()) {
+        //     console.log(key, value);
+        // }
 
 
-    const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        console.log(data)
 
     }
 
@@ -166,6 +194,7 @@ export default function DashboardPage() {
                                     name="code"
                                     label="Official Email*"
                                     required
+                                    type="email"
                                     placeholder="username@emample.com"
                                 />
                                 <SelectInput

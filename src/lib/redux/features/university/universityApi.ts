@@ -26,7 +26,7 @@ const universityApi = baseApi.injectEndpoints({
 
         addUinversity: builder.mutation({
             query: (data: FormData) => ({
-                url: "/register/agent",
+                url: "/university",
                 method: "POST",
                 body: data,
 
