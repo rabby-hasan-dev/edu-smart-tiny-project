@@ -37,10 +37,10 @@ const SelectInput: React.FC<ISelectInputProps> = ({
                     <select
                         {...field}
                         id={name}
-                        className="px-4 py-4 text-lg rounded-md text-[#092A67] bg-[#E9F1FA] border border-[#092A67] w-full outline-[#092A67]"
+                        className="px-4   py-4 text-lg rounded-md text-[#092A67] bg-[#E9F1FA] border border-[#092A67] w-full outline-[#092A67]"
                     >
                         <option value="" disabled>
-                            Select an option
+                            Select
                         </option>
                         {options.map((option) => (
                             <option key={option.value} value={option.value}>

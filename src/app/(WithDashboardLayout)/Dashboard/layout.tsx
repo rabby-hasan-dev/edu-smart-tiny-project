@@ -6,6 +6,7 @@ import Link from "next/link";
 import { DashboardSquareIcon, Logo, UserMultipleIcon, } from "@/assets/icons";
 import LinkItem from "../_components/UI/LinkeItem";
 import DashboardHeader from "../_components/module/DashboardHeader";
+import DashboardFooter from "../_components/module/DashboardFooter";
 
 
 export default function Dashboardlayout({ children }: { children: ReactNode }) {
@@ -62,10 +63,12 @@ export default function Dashboardlayout({ children }: { children: ReactNode }) {
 
                 {/* Main Content */}
                 <div className="flex-grow">
+                    {/* header */}
                     <DashboardHeader isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
-
                     {/* Main Content Area */}
-                    <div className="p-6">{children}</div>
+                    <div>{children}</div>
+                    <DashboardFooter />
+                    {/* footer  */}
                 </div>
 
                 {/* Overlay for small devices */}
