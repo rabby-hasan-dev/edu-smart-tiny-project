@@ -27,11 +27,16 @@ body {
 }
 @layer components {
   .btn-secondary {
-    @apply bg-[#F84F4F]  rounded-lg text-[#FFFFFF] text-[18px] font-bold py-[17px] px-6 ;
+    @apply bg-[#F84F4F]  w-full rounded-lg text-[#FFFFFF] text-[18px] font-bold py-4 px-6 ;
   }
 }
 
 .bg-primary{
   @apply bg-[#E9F1FA] ;
+}
+
+
+.text-primary{
+  @apply text-[#092A67] ;
 }
 

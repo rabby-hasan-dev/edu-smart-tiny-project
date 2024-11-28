@@ -25,7 +25,7 @@ export default function Dashboardlayout({ children }: { children: ReactNode }) {
 
     return (
         <>
-            <div className="flex  h-screen">
+            <div className="flex  h-full">
                 {/* Sidebar */}
                 <div
                     className={` w-[285px] fixed z-20 inset-y-0 left-0 transform ${isSidebarOpen ? "translate-x-0" : "-translate-x-full"} 
