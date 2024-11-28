@@ -1,15 +1,17 @@
 
 "use client";
-import { ReactNode, useState } from "react";
+import { ReactNode, useState, } from "react";
 import { usePathname } from "next/navigation"; // Get the current path
 import Link from "next/link";
 import { DashboardSquareIcon, Logo, UserMultipleIcon, } from "@/assets/icons";
 import LinkItem from "../_components/UI/LinkeItem";
+import DashboardHeader from "../_components/module/DashboardHeader";
 
 
 export default function Dashboardlayout({ children }: { children: ReactNode }) {
     const [isSidebarOpen, setSidebarOpen] = useState(false);
     const pathname = usePathname(); // Use App Router's usePathname hook
+
 
     const links = [
         { href: "/dashboard", label: "Dashboard", icon: <DashboardSquareIcon /> },
@@ -60,13 +62,7 @@ export default function Dashboardlayout({ children }: { children: ReactNode }) {
 
                 {/* Main Content */}
                 <div className="flex-grow">
-                    {/* Toggle Button for small screens */}
-                    <button
-                        className="md:hidden p-2 bg-gray-800 text-white m-4 rounded focus:outline-none z-30"
-                        onClick={() => setSidebarOpen(!isSidebarOpen)}
-                    >
-                        {isSidebarOpen ? "✕" : "☰"}
-                    </button>
+                    <DashboardHeader isSidebarOpen={isSidebarOpen} setSidebarOpen={setSidebarOpen} />
 
                     {/* Main Content Area */}
                     <div className="p-6">{children}</div>
