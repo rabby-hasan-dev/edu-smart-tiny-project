@@ -13,7 +13,6 @@ import { FieldValues, SubmitHandler } from 'react-hook-form';
 
 const LoginPage = () => {
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
-
         console.log(data)
     }
 
