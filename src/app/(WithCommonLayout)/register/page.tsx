@@ -9,14 +9,33 @@ import { FieldValues, SubmitHandler } from 'react-hook-form';
 import ESInput from '@/components/form/ESInput';
 import SelectInput from '@/components/form/ESSelect';
 import CheckboxInput from '@/components/form/ESCheckbox';
+import { useSignupMutation } from '@/lib/redux/features/auth/AuthApi';
 
 
 
 const RegisterPage = () => {
 
-    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const [register] = useSignupMutation();
 
-        console.log(data)
+    const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+
+        const formData = new FormData();
+        formData.append('role', data.role);
+        formData.append('email', data.email);
+        formData.append('password', data.password);
+        formData.append('confirm_password', data.password);
+
+        try {
+            const response = await register(formData).unwrap();
+            console.log('Success:', response);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+
+        // // Log FormData key-value pairs
+        // for (const [key, value] of formData.entries()) {
+        //     console.log(key, value);
+        // }
     }
 
     return (

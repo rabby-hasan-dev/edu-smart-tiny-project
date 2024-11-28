@@ -8,23 +8,29 @@ import Container from '@/components/UI/Container';
 import Link from 'next/link';
 import ESForm from '@/components/form/ESForm';
 import ESInput from '@/components/form/ESInput';
-import CheckboxInput from '@/components/form/ESCheckbox';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
-import { useAppDispatch } from '@/lib/redux/hook';
-import { setUser } from '@/lib/redux/features/auth/AuthSlice';
-import { useGetAllUniversityQuery } from '@/lib/redux/api/baseApi';
+
+import { toast } from 'sonner';
 
 const LoginPage = () => {
-    const dispatch = useAppDispatch();
 
-    const { data } = useGetAllUniversityQuery(undefined);
 
-    console.log(data)
+    const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+        const toastId = toast.loading('loading ....')
+        try {
 
-    const onSubmit: SubmitHandler<FieldValues> = (data) => {
-        console.log(data)
+            const userInfo = {
+                ...data
+            }
+            console.log(userInfo)
 
-        dispatch(setUser({ user: { name: 'rabby' }, token: 'token' }));
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (error: any) {
+            toast.error(error?.data?.message, { id: toastId, duration: 2000 })
+
+        }
+
+
     }
 
     return (
@@ -56,7 +62,6 @@ const LoginPage = () => {
                             <div className='space-y-6'>
                                 <ESInput label='Username/Email' type='text' name='email' placeholder='Jhon doe' />
                                 <ESInput label='Enter Password' type='password' name='password' placeholder='1234***' />
-                                <CheckboxInput name='agree' label='I agree to the terms and conditions' />
                                 <button className='btn-primary py-[17px] px-6 '>Continue to Login</button>
                             </div>
                         </ESForm>
