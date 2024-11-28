@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 import { Lora } from 'next/font/google'
+import ReduxWrapper from "@/lib/Providers/StoreProvider";
+
+
 
 const lora = Lora({
   subsets: ['latin'],
@@ -24,7 +27,9 @@ export default function RootLayout({
       <body
         className={lora.className}
       >
-        {children}
+        <ReduxWrapper >
+          {children}
+        </ReduxWrapper>
       </body>
     </html>
   );
