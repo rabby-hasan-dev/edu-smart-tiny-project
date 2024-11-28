@@ -10,10 +10,15 @@ import ESForm from '@/components/form/ESForm';
 import ESInput from '@/components/form/ESInput';
 import CheckboxInput from '@/components/form/ESCheckbox';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
+import { useAppDispatch } from '@/lib/redux/hook';
+import { setUser } from '@/lib/redux/features/auth/AuthSlice';
 
 const LoginPage = () => {
+    const dispatch = useAppDispatch();
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         console.log(data)
+
+        dispatch(setUser({ user: { name: 'rabby' }, token: 'token' }));
     }
 
     return (
