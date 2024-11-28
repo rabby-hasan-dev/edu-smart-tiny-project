@@ -5,10 +5,39 @@ import ESForm from "@/components/form/ESForm";
 import ESInput from "@/components/form/ESInput";
 import SelectInput from "@/components/form/ESSelect";
 import TextAreaInput from "@/components/form/ESTexarea";
+import Image from "next/image";
+import { ChangeEvent, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
 
 export default function DashboardPage() {
+    const [imageFile, setImageFile] = useState<File | null>(null);
+    const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+
+
+    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0]; // Get the first file
+
+        if (file) {
+            setImageFile(file); // Update file state
+
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                setImagePreview(reader.result as string); // Update preview state
+            };
+
+            reader.readAsDataURL(file); // Read file as Data URL
+        }
+    };
+
+    const handleRemoveImage = () => {
+        setImagePreview(null)
+    }
+
+
+
 
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         console.log(data)
@@ -54,14 +83,30 @@ export default function DashboardPage() {
 
                     <main className="lg:flex">
                         {/* Profile Card Section */}
-                        <section aria-labelledby="profile-card" className="w-1/4 mr-[41px] ">
+                        <section aria-labelledby="profile-card" className="lg:w-1/4 mr-[41px] ">
                             <h3 className="text-primary text-[18px] font-bold mb-2">Profile Picture</h3>
                             <div className="max-w-sm w-full space-y-3 bg-[#E9F1FA] p-6 rounded-xl border border-[#092A67]  flex flex-col items-center">
                                 <div className=" w-full h-[176px] bg-gray-200 rounded-[10px] overflow-hidden">
                                     {/* image */}
+                                    {imagePreview && <div style={{ position: 'relative', height: '400px' }}>
+                                        <Image
+                                            alt="Mountains"
+                                            src={imagePreview}
+                                            fill
+                                            sizes="(min-width: 808px) 50vw, 100vw"
+                                            style={{
+                                                objectFit: 'cover', // cover, contain, none
+                                            }}
+                                        />
+                                    </div>
+                                    }
+
+
                                 </div>
                                 <div className="w-full text-center">
-                                    <button className=" btn-secondary   ">
+                                    <button
+                                        onClick={handleRemoveImage}
+                                        className=" btn-secondary   ">
                                         Remove
                                     </button>
                                 </div>
@@ -72,7 +117,13 @@ export default function DashboardPage() {
 
                                         <span className="text-[18px] ml-[10px] text-primary ">Upload Media</span>
                                     </label>
-                                    <input id="image-upload" type="file" accept="image/*" className="hidden" />
+                                    <input
+                                        id="image-upload"
+                                        type="file"
+                                        accept="image/*"
+                                        className="hidden"
+                                        onChange={(e) => handleImageChange(e)}
+                                    />
                                 </div>
 
                             </div>
@@ -82,7 +133,7 @@ export default function DashboardPage() {
                         {/* Info Section */}
                         <section
                             aria-labelledby="university-info"
-                            className="w-3/4 space-y-6"
+                            className="lg:w-3/4 space-y-6"
                         >
                             {/* Add university info input fields here */}
                             <ESInput
