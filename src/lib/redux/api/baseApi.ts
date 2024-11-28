@@ -19,6 +19,7 @@ const baseQuery = fetchBaseQuery({
 
 })
 
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const baseQueryWithRefreshToken: BaseQueryFn<FetchArgs, BaseQueryApi, DefinitionType> = async (arg, api, extraOptions): Promise<any> => {
     const result = await baseQuery(arg, api, extraOptions)

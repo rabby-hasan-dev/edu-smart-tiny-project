@@ -10,13 +10,15 @@ import ESForm from '@/components/form/ESForm';
 import ESInput from '@/components/form/ESInput';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 
-import { toast } from 'sonner';
+// import { toast } from 'sonner';
+import { useLoginMutation } from '@/lib/redux/features/auth/AuthApi';
 
 const LoginPage = () => {
-
+    const [login] = useLoginMutation();
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-        const toastId = toast.loading('loading ....')
+        // const toastId = toast.loading('loading ....')
+
         try {
 
             const userInfo = {
@@ -24,12 +26,16 @@ const LoginPage = () => {
             }
             console.log(userInfo)
 
+            const jsondata = JSON.stringify(userInfo)
+
+            const res = await login(jsondata);
+            console.log('Success:', res);
+
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
-            toast.error(error?.data?.message, { id: toastId, duration: 2000 })
+            // toast.error(error?.data?.message, { id: toastId, duration: 2000 })
 
         }
-
 
     }
 

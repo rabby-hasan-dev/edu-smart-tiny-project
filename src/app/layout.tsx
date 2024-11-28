@@ -3,6 +3,7 @@ import "./globals.css";
 
 import { Lora } from 'next/font/google'
 import ReduxWrapper from "@/lib/Providers/StoreProvider";
+import { Toaster } from "sonner";
 
 
 
@@ -28,6 +29,7 @@ export default function RootLayout({
         className={lora.className}
       >
         <ReduxWrapper >
+          <Toaster />
           {children}
         </ReduxWrapper>
       </body>

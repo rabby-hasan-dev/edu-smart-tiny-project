@@ -1,15 +1,15 @@
 'use client'
 import { MailIcon, NotificationIcon } from '@/assets/icons';
-import React, { Dispatch, SetStateAction, } from 'react';
 import Avatar from '../UI/Avater';
 import SelectDropdown from '../UI/Dropdwon';
+import { useAppDispatch, useAppSelector } from '@/lib/redux/hook';
+import { toggleCollapse, } from '@/lib/redux/features/DashboardSlice';
 
-type THeaderProps = {
-    isSidebarOpen: boolean;
-    setSidebarOpen: Dispatch<SetStateAction<boolean>>; // This is the type for the state setter function
-};
 
-const DashboardHeader = ({ isSidebarOpen, setSidebarOpen }: THeaderProps) => {
+
+const DashboardHeader = () => {
+    const dispatch = useAppDispatch();
+    const { isCollapsed } = useAppSelector((state) => state.sidebar);
     return (
         <div>
             {/* Header Bar */}
@@ -17,10 +17,10 @@ const DashboardHeader = ({ isSidebarOpen, setSidebarOpen }: THeaderProps) => {
                 {/* Left Section */}
                 <div className="flex items-center space-x-4">
                     <button
-                        className="md:hidden p-2 bg-gray-800 text-white rounded focus:outline-none"
-                        onClick={() => setSidebarOpen(!isSidebarOpen)}
+                        className="p-2 bg-gray-800 text-white rounded focus:outline-none"
+                        onClick={() => dispatch(toggleCollapse())}
                     >
-                        {isSidebarOpen ? "✕" : "☰"}
+                        {isCollapsed ? "☰" : "✕"}
                     </button>
                     <button className="btn-primary py-2 px-4 text-sm md:py-3 md:px-[25px]">
                         Visit Website

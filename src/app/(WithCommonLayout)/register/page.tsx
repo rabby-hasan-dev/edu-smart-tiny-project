@@ -14,9 +14,7 @@ import { useSignupMutation } from '@/lib/redux/features/auth/AuthApi';
 
 
 const RegisterPage = () => {
-
     const [register] = useSignupMutation();
-
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
 
         const formData = new FormData();
