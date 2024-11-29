@@ -2,12 +2,11 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { CancelIcon, Logo, MenuIcon } from '@/assets/icons';
+import BrandLogo from './BrandLogo';
 
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
 
     return (
         <nav className='sticky  top-0 z-50 py-10 '>
@@ -20,9 +19,7 @@ const Navbar = () => {
                         </button>
                         <Link href="/">
 
-                            <div className='bg-[#B5D336] h-[68px] w-[68px] flex justify-center items-center rounded-full'>
-                                <Logo />
-                            </div>
+                            <BrandLogo />
                         </Link>
                     </div>
                     {/* Desktop Menu */}

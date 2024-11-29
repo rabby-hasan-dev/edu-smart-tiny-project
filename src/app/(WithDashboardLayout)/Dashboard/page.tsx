@@ -1,6 +1,5 @@
 'use client'
 
-
 import ESForm from "@/components/form/ESForm";
 import ESInput from "@/components/form/ESInput";
 import SelectInput from "@/components/form/ESSelect";
@@ -9,6 +8,7 @@ import { useAddUinversityMutation } from "@/lib/redux/features/university/univer
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import { toast } from "sonner";
 
 
 export default function DashboardPage() {
@@ -31,14 +31,13 @@ export default function DashboardPage() {
             reader.readAsDataURL(file); // Read file as Data URL
         }
     };
-
     const handleRemoveImage = () => {
         setImagePreview(null)
 
     }
 
-
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+        const toastId = toast.loading('loading ....')
         const formData = new FormData();
         formData.append('name', data.name); // University Name
         formData.append('description', data.description); // Description
@@ -56,11 +55,15 @@ export default function DashboardPage() {
         }
 
         try {
-            // const response = await addUniversity(formData).unwrap();
-            // console.log('Success:', response);
+            const res = await addUniversity(formData).unwrap();
+            toast.success(res?.message, { id: toastId, duration: 2000 });
+            console.log('Success:', res);
+
             // Optionally, reset form state or show success message here
-        } catch (error) {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (error: any) {
             console.error('Error:', error);
+            toast.error(error?.error?.message, { id: toastId, duration: 2000 })
         }
 
         // // Log FormData key-value pairs

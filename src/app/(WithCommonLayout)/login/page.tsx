@@ -11,27 +11,39 @@ import ESInput from '@/components/form/ESInput';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
 
 // import { toast } from 'sonner';
-import { useLoginMutation } from '@/lib/redux/features/auth/AuthApi';
+
+// import { setUser } from '@/lib/redux/features/auth/AuthSlice';
+// import { useAppDispatch } from '@/lib/redux/hook';
 
 const LoginPage = () => {
-    const [login] = useLoginMutation();
+    // const dispatch = useAppDispatch();
+
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         // const toastId = toast.loading('loading ....')
 
         try {
 
-            const userInfo = {
-                ...data
-            }
-            console.log(userInfo)
+            // const userInfo = {
+            //     ...data
+            // }
 
-            const jsondata = JSON.stringify(userInfo)
+            // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDg4NmQzNDllNWZiOWQ0Y2VmZGI2NyIsImVtYWlsIjoicmFiYnkuNjUzMDFAZ21haWwuY29tIiwicm9sZSI6ImFnZW50IiwiaWF0IjoxNzMyODQ3MDE4LCJleHAiOjE3MzU0MzkwMTh9.dSXrVT1TUOlgznMBtT5SnNYTItt-Yxyc4nDp7u9Q8dA"
 
-            const res = await login(jsondata);
-            console.log('Success:', res);
+            // const userdata = {
+            //     "id": "674886d349e5fb9d4cefdb67",
+            //     "email": "rabby.65301@gmail.com",
+            //     "role": "agent",
+            //     "iat": 1732847018,
+            //     "exp": 1735439018
+            // }
+            // dispatch(setUser({ user: userdata, token: token }));
 
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
+
+
+
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
         } catch (error: any) {
             // toast.error(error?.data?.message, { id: toastId, duration: 2000 })
 

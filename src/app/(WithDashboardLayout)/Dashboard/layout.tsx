@@ -9,6 +9,7 @@ import DashboardHeader from "../_components/module/DashboardHeader";
 import DashboardFooter from "../_components/module/DashboardFooter";
 import { closeSidebar, } from "@/lib/redux/features/DashboardSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hook";
+import BrandLogo from "@/components/UI/BrandLogo";
 
 
 export default function Dashboardlayout({ children }: { children: ReactNode }) {
@@ -39,9 +40,7 @@ export default function Dashboardlayout({ children }: { children: ReactNode }) {
                     {/* Sidebar Header */}
                     <div className="p-4 mb-[22px] flex items-center border-b border-white">
                         <Link href="/" className="flex items-center space-x-4">
-                            <div className="bg-[#B5D336] h-12 w-12 flex justify-center items-center rounded-full">
-                                <Logo />
-                            </div>
+                            <BrandLogo size="48px" />
                             {
                                 !isCollapsed && <div>
                                     <h4 className="text-4xl">eduSmart</h4>
@@ -69,9 +68,19 @@ export default function Dashboardlayout({ children }: { children: ReactNode }) {
                 </div>
 
                 {/* Main Content */}
-                <div className="flex-grow">
+                <div className="flex-grow relative">
                     {/* header */}
+
+                    {/* Circle - Half of it is visible */}
+                    <div
+                        className="absolute -top-[110px]  right-[17px] w-[289px] h-[289px] rounded-full bg-[#B5D336] opacity-[15%] overflow-hidden"
+                        style={{ clipPath: "circle(50% at 50% 50%)" }}
+                    >
+                        <div className="absolute inset-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full w-[210px] h-[210px]"></div>
+                    </div>
                     <DashboardHeader />
+
+
                     {/* Main Content Area */}
                     <div>{children}</div>
                     <DashboardFooter />

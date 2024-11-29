@@ -1,19 +1,18 @@
 'use client'
-import { MailIcon, NotificationIcon } from '@/assets/icons';
+import { DwonArrowIcon, MailIcon, NotificationIcon } from '@/assets/icons';
 import Avatar from '../UI/Avater';
 import SelectDropdown from '../UI/Dropdwon';
 import { useAppDispatch, useAppSelector } from '@/lib/redux/hook';
 import { toggleCollapse, } from '@/lib/redux/features/DashboardSlice';
 
 
-
 const DashboardHeader = () => {
     const dispatch = useAppDispatch();
     const { isCollapsed } = useAppSelector((state) => state.sidebar);
     return (
-        <div>
+        <div >
             {/* Header Bar */}
-            <header className="w-full bg-white shadow-md flex justify-between items-center px-4 py-3 md:px-6 md:py-4">
+            <header className="w-full  bg-white shadow-md flex justify-between items-center px-4 py-3 md:px-6 md:py-4">
                 {/* Left Section */}
                 <div className="flex items-center space-x-4">
                     <button
@@ -50,8 +49,8 @@ const DashboardHeader = () => {
                     {/* Dropdown */}
                     <SelectDropdown
                         trigger={
-                            <span className="text-sm md:text-base text-gray-700 cursor-pointer">
-                                Andrew Smith ▼
+                            <span className="flex text-sm md:text-base text-gray-700 cursor-pointer">
+                                Andrew Smith <DwonArrowIcon />
                             </span>
                         }
                         options={[
