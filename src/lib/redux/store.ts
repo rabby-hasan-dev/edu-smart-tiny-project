@@ -13,6 +13,7 @@ import authReducer from './features/auth/AuthSlice'
 import { baseApi } from './api/baseApi'
 import storage from 'redux-persist/lib/storage';
 import sidebarReducer from "./features/DashboardSlice";
+import passwordReducer from "./features/PassWordSlice";
 
 const persitConfig = {
     key: 'root',
@@ -25,6 +26,7 @@ export const store = configureStore({
     reducer: {
         auth: persistedAuthReducer,
         sidebar: sidebarReducer,
+        password: passwordReducer,
         [baseApi.reducerPath]: baseApi.reducer,
     },
     middleware: (getdefaultMiddleware) => getdefaultMiddleware({
