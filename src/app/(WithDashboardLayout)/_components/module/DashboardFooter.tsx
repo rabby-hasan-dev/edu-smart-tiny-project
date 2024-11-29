@@ -4,7 +4,7 @@ import BrandLogo from "@/components/UI/BrandLogo";
 const DashboardFooter = () => {
     return (
         <footer className="w-full bg-white  py-11 mb-[27px] mx-[30px] mt-[26px] ">
-            <div className="lg:flex-row-reverse justify-center items-center">
+            <div className="lg:flex justify-center items-center">
 
                 <p className="text-[18px] text-primary mr-4">
                     Copyright All Rights Reserved   &copy; {new Date().getFullYear()} .
