@@ -5,6 +5,8 @@ import ESInput from "@/components/form/ESInput";
 import SelectInput from "@/components/form/ESSelect";
 import TextAreaInput from "@/components/form/ESTexarea";
 import { useAddUinversityMutation } from "@/lib/redux/features/university/universityApi";
+import { addUniversitySchema } from "@/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { ChangeEvent, useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
@@ -12,9 +14,9 @@ import { toast } from "sonner";
 
 
 export default function DashboardPage() {
+    const [addUniversity] = useAddUinversityMutation();
     const [imageFile, setImageFile] = useState<File | null>(null);
     const [imagePreview, setImagePreview] = useState<string | null>(null);
-    const [addUniversity] = useAddUinversityMutation();
 
     const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0]; // Get the first file
@@ -58,18 +60,12 @@ export default function DashboardPage() {
             const res = await addUniversity(formData).unwrap();
             toast.success(res?.message, { id: toastId, duration: 2000 });
             console.log('Success:', res);
-
-            // Optionally, reset form state or show success message here
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             console.error('Error:', error);
-            toast.error(error?.error?.message, { id: toastId, duration: 2000 })
+            toast.error(error?.data?.message, { id: toastId, duration: 2000 })
         }
 
-        // // Log FormData key-value pairs
-        // for (const [key, value] of formData.entries()) {
-        //     console.log(key, value);
-        // }
 
 
 
@@ -110,7 +106,10 @@ export default function DashboardPage() {
             </header>
 
             <article className="bg-[#F0F5FC] pt-[23px] pl-[29px] pr-[33px] pb-[57px] rounded-xl ">
-                <ESForm onSubmit={onSubmit} >
+                <ESForm
+                    onSubmit={onSubmit}
+                    resolver={zodResolver(addUniversitySchema)}
+                >
 
                     <main className="lg:flex">
                         {/* Profile Card Section */}
@@ -157,6 +156,7 @@ export default function DashboardPage() {
                                     />
                                 </div>
 
+
                             </div>
 
                         </section>
@@ -170,7 +170,7 @@ export default function DashboardPage() {
                             <ESInput
                                 name="name"
                                 label="University Name *"
-                                required
+
                                 placeholder="University of Malaysia"
                             />
                             <TextAreaInput
@@ -182,13 +182,13 @@ export default function DashboardPage() {
                                 <ESInput
                                     name="address_line_1"
                                     label="Address Line 1 *"
-                                    required
+
                                     placeholder="Enter Your Address"
                                 />
                                 <ESInput
                                     name="address_line_2"
                                     label="Address Line 2 *"
-                                    required
+
                                     placeholder="Address Line 2 "
                                 />
                             </div>
@@ -196,7 +196,7 @@ export default function DashboardPage() {
                                 <ESInput
                                     name="code"
                                     label="Official Email*"
-                                    required
+
                                     type="email"
                                     placeholder="username@emample.com"
                                 />
@@ -225,7 +225,7 @@ export default function DashboardPage() {
                                 <ESInput
                                     name="zip"
                                     label="Zip Code*"
-                                    required
+
                                     placeholder="Enter"
                                 />
                             </div>
