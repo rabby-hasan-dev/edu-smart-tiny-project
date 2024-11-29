@@ -7,7 +7,7 @@ const authApi = baseApi.injectEndpoints({
             query: (data) => {
                 return {
                     url: "/login",
-                    method: "GET",
+                    method: "POST",
                     body: data,
 
                 }

@@ -9,43 +9,43 @@ import Link from 'next/link';
 import ESForm from '@/components/form/ESForm';
 import ESInput from '@/components/form/ESInput';
 import { FieldValues, SubmitHandler } from 'react-hook-form';
+import { toast } from 'sonner';
+import { useLoginMutation } from '@/lib/redux/features/auth/AuthApi';
+import { useAppDispatch } from '@/lib/redux/hook';
+import { verifyToken } from '@/utils/VerifyToken';
+import { setUser, TUser } from '@/lib/redux/features/auth/AuthSlice';
+import { useRouter } from 'next/navigation';
+import { USER_ROLE } from '@/constant';
 
-// import { toast } from 'sonner';
-
-// import { setUser } from '@/lib/redux/features/auth/AuthSlice';
-// import { useAppDispatch } from '@/lib/redux/hook';
 
 const LoginPage = () => {
-    // const dispatch = useAppDispatch();
-
+    const [login] = useLoginMutation();
+    const dispatch = useAppDispatch();
+    const router = useRouter();
 
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-        // const toastId = toast.loading('loading ....')
-
+        const toastId = toast.loading('loading ....')
         try {
+            const userInfo = {
+                ...data
+            }
 
-            // const userInfo = {
-            //     ...data
-            // }
-
-            // const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NDg4NmQzNDllNWZiOWQ0Y2VmZGI2NyIsImVtYWlsIjoicmFiYnkuNjUzMDFAZ21haWwuY29tIiwicm9sZSI6ImFnZW50IiwiaWF0IjoxNzMyODQ3MDE4LCJleHAiOjE3MzU0MzkwMTh9.dSXrVT1TUOlgznMBtT5SnNYTItt-Yxyc4nDp7u9Q8dA"
-
-            // const userdata = {
-            //     "id": "674886d349e5fb9d4cefdb67",
-            //     "email": "rabby.65301@gmail.com",
-            //     "role": "agent",
-            //     "iat": 1732847018,
-            //     "exp": 1735439018
-            // }
-            // dispatch(setUser({ user: userdata, token: token }));
-
-
-
-
-
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unused-vars
+            const res = await login(userInfo).unwrap();
+            console.log(res)
+            const user = verifyToken(res?.data?.token) as TUser;
+            console.log(user)
+            if (user?.role === USER_ROLE.user || user?.role === USER_ROLE.admin || user?.role === USER_ROLE.agent) {
+                dispatch(setUser({
+                    user: {
+                        ...user, name: res?.data?.first_name + '' + res?.data?.last_name
+                    }, token: res.token
+                }));
+                toast.success(res?.message, { id: toastId, duration: 2000 });
+                router.push('/dashboard')
+            }
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
-            // toast.error(error?.data?.message, { id: toastId, duration: 2000 })
+            toast.error(error?.data?.message, { id: toastId, duration: 2000 })
 
         }
 
