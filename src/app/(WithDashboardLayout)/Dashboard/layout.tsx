@@ -25,7 +25,6 @@ export default function Dashboardlayout({ children }: { children: ReactNode }) {
     const pathname = usePathname();
 
 
-
     const links = [
         { href: "/dashboard", label: "Dashboard", icon: <DashboardSquareIcon /> },
         { href: "/dashboard/university", label: "Universities", icon: <DashboardSquareIcon /> },

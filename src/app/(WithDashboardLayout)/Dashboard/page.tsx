@@ -113,7 +113,7 @@ export default function DashboardPage() {
 
                     <main className="lg:flex">
                         {/* Profile Card Section */}
-                        <section aria-labelledby="profile-card" className="lg:w-1/4 mr-[41px] ">
+                        <section aria-labelledby="profile-card" className="lg:w-1/4 lg:mr-[41px] ">
                             <h3 className="text-primary text-[18px] font-bold mb-2">Profile Picture</h3>
                             <div className="max-w-sm w-full space-y-3 bg-[#E9F1FA] p-6 rounded-xl border border-[#092A67]  flex flex-col items-center">
                                 <div className=" w-full h-[176px] bg-gray-200 rounded-[10px] overflow-hidden">
@@ -178,7 +178,7 @@ export default function DashboardPage() {
                                 name="description"
                                 placeholder="Write description..."
                             />
-                            <div className="grid grid-cols-2 w-full  gap-[30px] ">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 w-full  gap-[30px] ">
                                 <ESInput
                                     name="address_line_1"
                                     label="Address Line 1 *"
@@ -192,7 +192,7 @@ export default function DashboardPage() {
                                     placeholder="Address Line 2 "
                                 />
                             </div>
-                            <div className="grid grid-cols-2 w-full  gap-[30px] ">
+                            <div className="grid grid-cols-1 lg:grid-cols-2 w-full  gap-[30px] ">
                                 <ESInput
                                     name="code"
                                     label="Official Email*"
@@ -207,7 +207,7 @@ export default function DashboardPage() {
                                     rules={{ required: "country is required" }}
                                 />
                             </div>
-                            <div className="grid grid-cols-3 w-full  gap-[30px] ">
+                            <div className="grid grid-cols-1  lg:grid-cols-3 w-full  gap-[30px] ">
 
                                 <SelectInput
                                     name="city"
