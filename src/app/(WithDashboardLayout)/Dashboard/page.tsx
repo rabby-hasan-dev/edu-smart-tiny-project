@@ -59,7 +59,8 @@ export default function DashboardPage() {
         try {
             const res = await addUniversity(formData).unwrap();
             toast.success(res?.message, { id: toastId, duration: 2000 });
-            console.log('Success:', res);
+
+
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             console.error('Error:', error);

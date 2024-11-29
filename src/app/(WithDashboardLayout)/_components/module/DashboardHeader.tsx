@@ -54,8 +54,8 @@ const DashboardHeader = () => {
                             </span>
                         }
                         options={[
-                            { label: "Profile", onClick: () => window.location.href = "/#" },
-                            { label: "Settings", onClick: () => window.location.href = "/#" },
+                            { label: "Profile", onClick: () => window.location.href = "#" },
+                            { label: "Settings", onClick: () => window.location.href = "#" },
                             { label: "Logout", onClick: () => console.log("Logout clicked") },
                         ]}
                     />

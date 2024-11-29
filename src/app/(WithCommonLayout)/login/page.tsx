@@ -42,7 +42,7 @@ const LoginPage = () => {
                         ...user, name: res?.data?.first_name + '' + res?.data?.last_name
                     }, token: res.data.token
                 }));
-                toast.success(res?.message, { id: toastId, duration: 2000 });
+                toast.success(res?.data?.message, { id: toastId, duration: 2000 });
                 router.push('/dashboard')
             }
             // eslint-disable-next-line @typescript-eslint/no-explicit-any

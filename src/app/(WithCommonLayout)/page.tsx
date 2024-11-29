@@ -15,7 +15,7 @@ export default async function HomePage() {
           Welcome to Our Edu Smart!
         </h1>
         <p className="mt-4 text-lg sm:text-xl text-center max-w-xl">
-          Discover new experiences, learn something new, and connect with others. Let's make it happen together.
+          Discover new experiences, learn something new, and connect with others. Let&apos;s make it happen together.
         </p>
 
         <Link href="#" >

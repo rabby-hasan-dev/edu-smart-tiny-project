@@ -13,11 +13,15 @@ import { useSignupMutation } from '@/lib/redux/features/auth/AuthApi';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registrationSchema } from '@/schemas';
 
+import { toast } from 'sonner';
+import { useRouter } from 'next/navigation';
 
 
 const RegisterPage = () => {
     const [register] = useSignupMutation();
+    const router = useRouter();
     const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+
 
         const formData = new FormData();
         formData.append('role', data.role);
@@ -27,9 +31,14 @@ const RegisterPage = () => {
 
         try {
             const response = await register(formData).unwrap();
-            console.log('Success:', response);
-        } catch (error) {
+            toast.success(response?.data?.message,);
+            router.push('/dashboard')
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        } catch (error: any
+
+        ) {
             console.error('Error:', error);
+            toast.error(error?.data?.message,)
         }
 
 
