@@ -5,7 +5,6 @@ export default async function HomePage() {
 
 
 
-
   return (
     <section className="relative h-[calc(100vh-200px)] ">
 

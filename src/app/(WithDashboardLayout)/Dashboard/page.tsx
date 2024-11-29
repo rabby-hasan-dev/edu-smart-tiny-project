@@ -99,7 +99,7 @@ export default function DashboardPage() {
 
 
     return (
-        <section className="mx-[30px] mt-7 mb-[26px] h-full ">
+        <section className="mx-[30px] mt-[124px] mb-[26px] h-full ">
             <header className="mb-[23px]">
                 <h2 className="text-primary text-[28px]">Add New University</h2>
                 <p className="text-primary">Note: Star (*) marked fields are required to fill.</p>

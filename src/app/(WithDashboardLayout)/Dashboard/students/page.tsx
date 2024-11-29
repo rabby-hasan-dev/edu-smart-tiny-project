@@ -2,7 +2,7 @@ import React from 'react';
 
 const PackagesPage = () => {
     return (
-        <section className='h-screen'>
+        <section className='h-screen mx-[30px] mt-[124px] mb-[26px]'>
             <div className="bg-yellow-100 border-l-4  border-yellow-500 text-yellow-700 p-4">
                 <div className="flex items-center">
                     <svg

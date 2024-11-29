@@ -12,7 +12,7 @@ const DashboardHeader = () => {
     return (
         <div >
             {/* Header Bar */}
-            <header className="w-full  bg-white shadow-md flex justify-between items-center px-4 py-3 md:px-6 md:py-4">
+            <header className="w-full absolute  bg-white shadow-md flex justify-between items-center px-4 py-3 md:px-6 md:py-4">
                 {/* Left Section */}
                 <div className="flex items-center space-x-4">
                     <button

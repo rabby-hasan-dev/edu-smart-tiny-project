@@ -79,19 +79,21 @@ export default function Dashboardlayout({ children }: { children: ReactNode }) {
                 {/* Main Content */}
                 <div className="flex-grow relative">
                     {/* header */}
-
                     {/* Circle - Half of it is visible */}
                     <div
-                        className="absolute -top-[110px]  right-[17px] w-[289px] h-[289px] rounded-full bg-[#B5D336] opacity-[15%] overflow-hidden"
+                        className="absolute -top-[94px]  right-[17px] w-[289px] h-[289px] rounded-full bg-[#B5D336] opacity-[15%] overflow-hidden"
                         style={{ clipPath: "circle(50% at 50% 50%)" }}
                     >
                         <div className="absolute inset-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full w-[210px] h-[210px]"></div>
                     </div>
+
+
                     <DashboardHeader />
 
 
                     {/* Main Content Area */}
                     <div>{children}</div>
+
                     <DashboardFooter />
                     {/* footer  */}
                 </div>
@@ -103,7 +105,7 @@ export default function Dashboardlayout({ children }: { children: ReactNode }) {
                         onClick={() => dispatch(closeSidebar())}
                     />
                 )}
-            </div>
+            </div >
 
         </>
     );
