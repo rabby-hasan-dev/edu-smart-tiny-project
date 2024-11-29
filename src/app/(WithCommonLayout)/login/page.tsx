@@ -16,6 +16,8 @@ import { verifyToken } from '@/utils/VerifyToken';
 import { setUser, } from '@/lib/redux/features/auth/AuthSlice';
 import { useRouter } from 'next/navigation';
 import { USER_ROLE } from '@/constant';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { loginSchema } from '@/schemas';
 
 
 
@@ -76,6 +78,7 @@ const LoginPage = () => {
                         <ESForm
 
                             onSubmit={onSubmit}
+                            resolver={zodResolver(loginSchema)}
                         >
                             <div className='space-y-6'>
                                 <ESInput label='Username/Email' type='text' name='email' placeholder='Jhon doe' />

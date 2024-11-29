@@ -13,3 +13,22 @@ export const addUniversitySchema = z.object({
 });
 
 export type AddUniversityFormValues = z.infer<typeof addUniversitySchema>;
+
+export const loginSchema = z.object({
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+});
+
+
+
+
+export const registrationSchema = z.object({
+    role: z.string().min(1, "Role is required"),
+    email: z.string().email("Invalid email address"),
+    password: z
+        .string()
+        .min(6, "Password must be at least 6 characters"),
+    agree: z.boolean().refine(val => val === true, {
+        message: "You must agree to the terms and conditions",
+    }),
+});

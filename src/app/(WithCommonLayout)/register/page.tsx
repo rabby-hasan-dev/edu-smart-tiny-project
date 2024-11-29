@@ -10,6 +10,8 @@ import ESInput from '@/components/form/ESInput';
 import SelectInput from '@/components/form/ESSelect';
 import CheckboxInput from '@/components/form/ESCheckbox';
 import { useSignupMutation } from '@/lib/redux/features/auth/AuthApi';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { registrationSchema } from '@/schemas';
 
 
 
@@ -57,6 +59,7 @@ const RegisterPage = () => {
                         <ESForm
 
                             onSubmit={onSubmit}
+                            resolver={zodResolver(registrationSchema)}
                         >
                             <div className='space-y-6'>
                                 <SelectInput
@@ -69,7 +72,7 @@ const RegisterPage = () => {
                                     ]}
                                     rules={{ required: "role is required" }}
                                 />
-                                <ESInput label='Username/Email' type='text' name='email' placeholder='Jhon doe' />
+                                <ESInput label='Username/Email' type='email' name='email' placeholder='Jhon doe' />
                                 <ESInput label='Enter Password' type='password' name='password' placeholder='1234***' />
                                 <CheckboxInput name='agree' label='I agree to the terms and conditions' />
 
