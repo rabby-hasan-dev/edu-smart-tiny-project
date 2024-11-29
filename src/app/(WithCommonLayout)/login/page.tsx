@@ -13,7 +13,7 @@ import { toast } from 'sonner';
 import { useLoginMutation } from '@/lib/redux/features/auth/AuthApi';
 import { useAppDispatch } from '@/lib/redux/hook';
 import { verifyToken } from '@/utils/VerifyToken';
-import { setUser, TUser } from '@/lib/redux/features/auth/AuthSlice';
+import { setUser, } from '@/lib/redux/features/auth/AuthSlice';
 import { useRouter } from 'next/navigation';
 import { USER_ROLE } from '@/constant';
 
@@ -29,16 +29,13 @@ const LoginPage = () => {
             const userInfo = {
                 ...data
             }
-
             const res = await login(userInfo).unwrap();
-            console.log(res)
-            const user = verifyToken(res?.data?.token) as TUser;
-            console.log(user)
+            const user = verifyToken(res?.data?.token);
             if (user?.role === USER_ROLE.user || user?.role === USER_ROLE.admin || user?.role === USER_ROLE.agent) {
                 dispatch(setUser({
                     user: {
                         ...user, name: res?.data?.first_name + '' + res?.data?.last_name
-                    }, token: res.token
+                    }, token: res.data.token
                 }));
                 toast.success(res?.message, { id: toastId, duration: 2000 });
                 router.push('/dashboard')

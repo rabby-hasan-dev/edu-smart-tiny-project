@@ -1,21 +1,30 @@
 
 "use client";
-import { DashboardSquareIcon, Logo, UserMultipleIcon } from "@/assets/icons";
+import { DashboardSquareIcon, UserMultipleIcon } from "@/assets/icons";
 import Link from "next/link";
 import { ReactNode, } from "react";
-import { usePathname } from "next/navigation"; // Get the current path
+import { usePathname, useRouter } from "next/navigation"; // Get the current path
 import LinkItem from "../_components/UI/LinkeItem";
 import DashboardHeader from "../_components/module/DashboardHeader";
 import DashboardFooter from "../_components/module/DashboardFooter";
 import { closeSidebar, } from "@/lib/redux/features/DashboardSlice";
 import { useAppDispatch, useAppSelector } from "@/lib/redux/hook";
 import BrandLogo from "@/components/UI/BrandLogo";
+import { selectCurrentUser } from "@/lib/redux/features/auth/AuthSlice";
 
 
 export default function Dashboardlayout({ children }: { children: ReactNode }) {
+    const router = useRouter();
+    const user = useAppSelector(selectCurrentUser);
+    if (!user?.email) {
+        router.push('/login')
+
+    }
     const dispatch = useAppDispatch();
     const { isSidebarOpen, isCollapsed } = useAppSelector((state) => state.sidebar);
-    const pathname = usePathname(); // Use App Router's usePathname hook
+    const pathname = usePathname();
+
+
 
     const links = [
         { href: "/dashboard", label: "Dashboard", icon: <DashboardSquareIcon /> },

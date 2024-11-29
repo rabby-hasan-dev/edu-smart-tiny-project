@@ -3,10 +3,17 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import { CancelIcon, Logo, MenuIcon } from '@/assets/icons';
 import BrandLogo from './BrandLogo';
+import { useAppDispatch, useAppSelector } from '@/lib/redux/hook';
+import { logOut, selectCurrentUser } from '@/lib/redux/features/auth/AuthSlice';
 
 const Navbar = () => {
+    const user = useAppSelector(selectCurrentUser);
+    const dispatch = useAppDispatch();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+    const handleLogOut = () => {
+        dispatch(logOut())
+    }
 
     return (
         <nav className='sticky  top-0 z-50 py-10 '>
@@ -73,21 +80,34 @@ const Navbar = () => {
 
                                 <Link href="/#" className="text-[#092A67] text-[20px] font-bold hover:text-[#007bff] "> About</Link>
                             </li>
-                            <li>
 
-                                <Link href="/dashboard" className="text-[#092A67] text-[20px] font-bold hover:text-[#007bff] ">Dashboard</Link>
-                            </li>
+
+                            {
+                                user?.email && <li> <Link href="/dashboard" className="text-[#092A67] text-[20px] font-bold hover:text-[#007bff] ">Dashboard</Link></li>
+
+                            }
 
                         </ul>
 
                     </nav>
                     {/* Right Section */}
                     <div className="flex items-center space-x-4">
-                        <Link href='/login' >
-                            <button className='btn-primary text-xl px-6 py-[10px] '>
-                                Login
-                            </button>
-                        </Link>
+                        {
+                            user?.email ? <>
+                                <button
+                                    onClick={handleLogOut}
+                                    className='btn-primary text-xl px-6 py-[10px] '>
+                                    logOut
+                                </button>
+
+                            </> : <>
+                                <Link href='/login' >
+                                    <button className='btn-primary text-xl px-6 py-[10px] '>
+                                        Login
+                                    </button>
+                                </Link>
+                            </>
+                        }
 
                     </div>
                 </div>
